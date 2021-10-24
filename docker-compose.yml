@@ -1,0 +1,37 @@
+version: "3.8"
+
+volumes:
+  gems:
+  databases:
+  node_modules:
+
+services:
+  pg:
+    image: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - databases:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: domestic-bills
+      POSTGRES_HOST_AUTH_METHOD: trust
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bin/docker-entrypoint.sh
+    ports:
+      - 3000:3000
+    working_dir: /src
+    volumes:
+      - ./:/src
+      # https://anonoz.github.io/tech/2021/01/10/rails-docker-compose-yml.html
+      - gems:/usr/local/bundle
+      - node_modules:/src/node_modules
+    environment:
+      POSTGRES_HOST: pg
+      POSTGRES_USER: postgres
+      POSTGRES_DB: domestic-bills
+    depends_on:
+      - pg

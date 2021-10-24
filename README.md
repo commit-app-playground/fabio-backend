@@ -1,4 +1,4 @@
-#  fabio-backend Backend service
+#  fabio-backend
 
 # Getting Started
 
@@ -65,6 +65,65 @@ docker run --rm -it \
   fabio-backend rails c
 ```
 
+## Docker composer
+Simplifies the setup of the network and the containers according
+to the `docker-compose.yml` configurations.
+```
+# https://docs.docker.com/samples/rails/#rebuild-the-application
+# If the container is declared with a build directive in the docker-compose file
+# instead of an image directive, this command rebuilds the image and starts the
+# container
+docker-compose up --build
+
+# Start the app and postgres containers in detached mode
+# without rebuilding the image
+docker-compose up -d
+
+# Logs - all containers
+docker-compose logs -f
+
+# Logs - app container only
+docker-compose logs -f app
+
+# Logs - pg container only
+docker-compose logs -f pg
+
+# Stops the containers, preserving the database volume
+docker-compose down
+
+# stop and remove volumes
+docker-compose down --volumes
+```
+
+### Useful commands
+```
+# PG 5432 port is exposed via localhost/5432
+# -h is mandatory, otherwise psql tries to conneck
+# using a socket file /tmp/.s.PGSQL.5432
+psql -h 127.0.0.1 -U postgres
+
+# It's possible to run rails commands inside the container
+docker-compose run --rm app rails db:reset
+docker-compose run --rm app rails db:migrate
+docker-compose run --rm app rails test
+
+# To make life easier, add this alias to your `.bashrc` or similer
+alias drails="docker-compose run --rm app rails"
+
+# You can also run commands using interactive bash terminal
+docker-compose run --rm app /bin/bash
+Creating fabio-backend_app_run ... done
+root@a583953e3cf3:/src# rails test
+Running 0 tests in a single process (parallelization threshold is 50)
+Run options: --seed 21251
+
+# Running:
+Finished in 0.003540s, 0.0000 runs/s, 0.0000 assertions/s.
+0 runs, 0 assertions, 0 failures, 0 errors, 0 skips
+```
+
+# Zero Getting Started
+
 ### Zero-generated Dockerfile
 
 ### Essential steps to get your backend service deployed
@@ -84,7 +143,7 @@ docker build -t fabio-backend .
 docker run -d -p 80:80 fabio-backend
 ```
 
-### Setting up the Rails app
+### Setting up the Rails app after Zero setup
 ```
 # rbenv/ruby-build will display the latest ruby version
 rbenv install --list
