@@ -2,6 +2,9 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  #
+  # https://stackoverflow.com/questions/29417328/how-to-disable-cannot-render-console-from-on-rails
+  config.web_console.permissions = '172.17.0.0/16'
 
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development

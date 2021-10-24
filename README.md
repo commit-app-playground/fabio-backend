@@ -1,8 +1,71 @@
 #  fabio-backend Backend service
 
 # Getting Started
-### Docker
+
+## Docker
 [This guide](https://docs.docker.com/get-started/) is a great source to get started with Docker.
+
+These are the commands to build a container image and set up
+the network and the containers for the app.
+```
+# Build the image
+docker build -t fabio-backend .
+
+# Security Scan
+docker scan fabio-backend
+
+# Start a network
+docker network create fabio-network
+
+# Start a postgres container
+docker run -d                         \
+  --network fabio-network             \
+  --network-alias pg                  \
+  -v pg-data:/var/lib/postgresql      \
+  -e POSTGRES_HOST_AUTH_METHOD=trust postgres
+
+# Start the app container
+docker run --rm -dp 3000:3000         \
+  --network fabio-network             \
+  -e POSTGRES_HOST=pg                 \
+  -e POSTGRES_USER=postgres           \
+  -v "$(pwd):/app"                    \
+  -v "gems:/usr/local/bundle"         \
+  -v "node_modules:/src/node_modules" \
+  fabio-backend bin/docker-entrypoint.sh
+
+# Run tests inside the container
+docker run --rm                       \
+  --network fabio-network             \
+  -e POSTGRES_HOST=pg                 \
+  -e POSTGRES_USER=postgres           \
+  -v "$(pwd):/app"                    \
+  -v "gems:/usr/local/bundle"         \
+  -v "node_modules:/src/node_modules" \
+  fabio-backend rails test
+
+# Start an interactive terminal irb console (without loading Rails)
+docker run --rm -it \
+  --network fabio-network             \
+  -e POSTGRES_HOST=pg                 \
+  -e POSTGRES_USER=postgres           \
+  -v "$(pwd):/app"                    \
+  -v "gems:/usr/local/bundle"         \
+  -v "node_modules:/src/node_modules" \
+  fabio-backend
+
+# Start an interactive terminal rails console
+docker run --rm -it \
+  --network fabio-network             \
+  -e POSTGRES_HOST=pg                 \
+  -e POSTGRES_USER=postgres           \
+  -v "$(pwd):/app"                    \
+  -v "gems:/usr/local/bundle"         \
+  -v "node_modules:/src/node_modules" \
+  fabio-backend rails c
+```
+
+### Zero-generated Dockerfile
 
 ### Essential steps to get your backend service deployed
 A helloworld example has been shipped with the template to show the bare minimum setup.
@@ -18,7 +81,7 @@ docker build -t fabio-backend .
 # runs the docker container
 # -d: detached mode (run in background)
 # -p: publishes the container's port 80 to the host's port 80
-docker run -d -p 80:80
+docker run -d -p 80:80 fabio-backend
 ```
 
 ### Setting up the Rails app
