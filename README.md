@@ -1,11 +1,25 @@
 #  fabio-backend Backend service
 
 # Getting Started
-### Essential steps to get your backend service deployed
-A helloworld example has been shipped with the template to show the bare minimum setup - a server that listens on the configured port, a dockerfile, and some kubernetes manifests.
-- Webserver that listens on port 80
-- Dockerfile builds and serves on port 80
+### Docker
+[This guide](https://docs.docker.com/get-started/) is a great source to get started with Docker.
 
+### Essential steps to get your backend service deployed
+A helloworld example has been shipped with the template to show the bare minimum setup.
+  - The Dockerfile contains a script used to create a Python image.
+  - The Python app dependencies are declared in the requirements.txt and installed using the pip package manager.
+  - The `main.py` backend is a simple Hello World Flask app running on the container's port 80.
+  - Docker exposes this container port 80 to be accessible from the host machine.
+
+```
+# builds the Docker image
+docker build -t fabio-backend .
+
+# runs the docker container
+# -d: detached mode (run in background)
+# -p: publishes the container's port 80 to the host's port 80
+docker run -d -p 80:80
+```
 
 # Deployment
 ### Things that happened behind the scenes
