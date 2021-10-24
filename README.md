@@ -21,6 +21,24 @@ docker build -t fabio-backend .
 docker run -d -p 80:80
 ```
 
+### Setting up the Rails app
+```
+# rbenv/ruby-build will display the latest ruby version
+rbenv install --list
+
+# Installs the latest ruby version
+rbenv install 3.0.2
+
+# Install Rails 7.0.0.alpha2
+gem install rails --pre
+
+# create the app named Bills
+# - using postgresql database and Sass pré-processor
+# - skips bootsnap, spring, coffeescript, jbuilder, and system-tests (Capybara)
+# - these settings can be configured using a ~/.railsrc file
+rails new . --database=postgresql --skip-bootsnap --skip-spring --skip-coffee --skip-jbuilder --skip-system-test --css=sass
+```
+
 # Deployment
 ### Things that happened behind the scenes
 - The Github Org has already been configured with secrets that allow this project to deploy to the Onboarding cluster
