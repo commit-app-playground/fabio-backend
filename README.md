@@ -37,6 +37,11 @@ gem install rails --pre
 # - skips bootsnap, spring, coffeescript, jbuilder, and system-tests (Capybara)
 # - these settings can be configured using a ~/.railsrc file
 rails new . --database=postgresql --skip-bootsnap --skip-spring --skip-coffee --skip-jbuilder --skip-system-test --css=sass
+
+# Generates the db/schema file.
+# PG must be configured on the host machine
+# https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-20-04
+rails db:create db:migrate
 ```
 
 # Deployment
