@@ -27,6 +27,10 @@ gem "cssbundling-rails", ">= 0.1.0"
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"
 
+# Use Slim as the default markup language for better performance and dev productivity
+# https://www.honeybadger.io/blog/ruby-template-performance-erb-haml-slim/
+gem 'slim-rails'
+
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
