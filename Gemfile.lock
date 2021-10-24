@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/fabiolnm/minitest-rails.git
+  revision: f2c232c9be66b54600ba9e7629c56e727a58aa8e
+  specs:
+    minitest-rails (6.1.0)
+      minitest (~> 5.10)
+      railties (= 7.0.0.alpha2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -168,6 +176,7 @@ DEPENDENCIES
   cssbundling-rails (>= 0.1.0)
   debug (>= 1.0.0)
   importmap-rails (>= 0.3.4)
+  minitest-rails!
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.0.alpha2)
