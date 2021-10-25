@@ -1,21 +1,6 @@
-h1 Listing accounts
+= link_to 'New Account', [:new, :account]
 
-table
-  thead
-    tr
-      th Name
-      th
-      th
-      th
-
-  tbody
-    - @accounts.each do |account|
-      tr
-        td = account.name
-        td = link_to 'Show', account
-        td = link_to 'Edit', edit_account_path(account)
-        td = link_to 'Destroy', account, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Account', new_account_path
+- if @accounts.none?
+  p Click to add your first account (Home, Education, Health, Financing, etc)
+- else
+  = render 'accounts'

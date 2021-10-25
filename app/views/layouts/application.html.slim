@@ -1,11 +1,10 @@
 doctype html
 html
   head
-    title
-      | FabioBackend
+    title Accounts
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
   body
-    = yield
+    #content = yield
