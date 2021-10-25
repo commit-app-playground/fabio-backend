@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+home_electricity:
+  account: home
+  name: Electricity
+  day: 5
+
+home_condominium:
+  account: home
+  name: Condominium
+  day: 15
+
+beach_house_electricity:
+  account: beach_house
+  name: Electricity
+  day: 10

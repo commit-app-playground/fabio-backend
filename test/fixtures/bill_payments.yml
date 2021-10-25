@@ -1,0 +1,11 @@
+home_electricity_september:
+  bill: home_electricity
+  date: 2021-09-05
+  amount_cents: 100000
+  amount_currency: BRL
+
+home_condominium_september:
+  bill: home_condominium
+  date: 2021-09-15
+  amount_cents: 67000
+  amount_currency: BRL
