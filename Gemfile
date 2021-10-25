@@ -31,6 +31,9 @@ gem "redis", "~> 4.0"
 # https://www.honeybadger.io/blog/ruby-template-performance-erb-haml-slim/
 gem 'slim-rails'
 
+# https://github.com/RubyMoney/money-rails
+gem 'money-rails'
+
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
