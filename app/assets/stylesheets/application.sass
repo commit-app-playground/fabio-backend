@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans')
 @import 'normalizecss/normalize'
+@import 'variables'
 
 :root
   font-size: 14px
@@ -8,7 +9,15 @@
 h1, h2, h3, h4, h5, p
   margin: 0
 
-#content
-  width: 60%
-  margin: 20px auto
-  background: white
+ul.nostyle
+  margin: 0
+  padding: 0
+  list-style-type: none
+
+@import 'desktop/main'
+
+@media (max-width: $breakpoint-tablet)
+  @import 'tablet/main'
+
+@media (max-width: $breakpoint-mobile)
+  @import 'mobile/main'
