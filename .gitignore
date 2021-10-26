@@ -35,3 +35,6 @@
 # application environment config
 .env
 secrets/secrets.yml
+
+# byebug
+.byebug_history

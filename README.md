@@ -122,6 +122,35 @@ Finished in 0.003540s, 0.0000 runs/s, 0.0000 assertions/s.
 0 runs, 0 assertions, 0 failures, 0 errors, 0 skips
 ```
 
+### Attaching to a container to Debug
+```
+# Initialize the detached cluster
+docker-compose up -d
+
+# Copy the container ID
+% docker container ls
+CONTAINER ID   IMAGE               COMMAND                  CREATED         STATUS         PORTS                    NAMES
+a6a70fafc531   fabio-backend_app   "bin/docker-entrypoi…"   6 minutes ago   Up 6 minutes   0.0.0.0:3000->3000/tcp   fabio-backend_app_1
+
+# Attach to the app container
+# - Control+C detaches but also terminates the container
+# - Control+Q detaches the debugging session without terminating the container
+docker attach a6a70fafc531
+
+# Add a byebug breakpoint to a ruby code and refresh the browser
+[1, 6] in /src/app/helpers/application_helper.rb
+   1: module ApplicationHelper
+   2:   def body
+   3:     byebug
+=> 4:     content_tag :body
+   5:   end
+   6: end
+(byebug) params
+#<ActionController::Parameters {"controller"=>"accounts", "action"=>"index"} permitted: false>
+(byebug) exit
+  Rendered layout layouts/application.html.slim (Duration: 58581.3ms | Allocations: 89557)
+```
+
 # Zero Getting Started
 
 ### Zero-generated Dockerfile
