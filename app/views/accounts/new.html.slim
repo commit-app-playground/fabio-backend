@@ -1,5 +1,9 @@
-h1 New account
-
-== render 'form'
-
-= link_to 'Back', accounts_path
+= turbo_frame_tag :new_account
+  == render 'form'
+  .box-instructions
+    Accounts are used to group bills, Ex:
+    ul
+      li Home accounts (electricity, internet, condominium)
+      li Education accounts (school, university, books)
+      li Health (healthcare plans, gym, medicines)
+      li Financing (mortgages, loans)
