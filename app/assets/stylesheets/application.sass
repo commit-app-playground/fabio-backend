@@ -3,7 +3,7 @@
 @import 'variables'
 
 :root
-  font-size: 14px
+  font-size: 13px
   font-family: 'Open Sans', sans-serif
 
 h1, h2, h3, h4, h5, p
@@ -13,6 +13,30 @@ ul.nostyle
   margin: 0
   padding: 0
   list-style-type: none
+
+.box-instructions
+  padding: 5px 10px
+  margin: 10px 0
+  font-size: 11px
+  background: ghostwhite
+  border: 1px solid lavender
+  ul
+    padding: 0
+    list-style: inside
+    list-style-type: disc
+
+.input-group
+  display: flex
+  input
+    font-size: 12px
+    box-sizing: border-box
+    border: 1px solid gray
+    &[type=text]
+      flex: 2
+      padding-left: 5px
+      padding-right: 5px
+    & + input[type=submit]
+      border-left: 0
 
 @import 'desktop/main'
 
