@@ -16,6 +16,14 @@ services:
       POSTGRES_DB: domestic-bills
       POSTGRES_HOST_AUTH_METHOD: trust
 
+  redis:
+    image: redis
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - 6379:6379
+    volumes:
+      - databases:/data
+
   app:
     build:
       context: .
@@ -33,8 +41,10 @@ services:
       POSTGRES_HOST: pg
       POSTGRES_USER: postgres
       POSTGRES_DB: domestic-bills
+      REDIS_URL: redis://redis:6379/12
     depends_on:
       - pg
+      - redis
     # https://medium.com/gogox-technology/debugging-rails-app-with-docker-compose-39a3767962f4
     stdin_open: true
     tty: true
