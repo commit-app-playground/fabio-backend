@@ -1,0 +1,9 @@
+household_fabio:
+  account_book: household
+  person: fabio
+  role: owner
+
+household_camila:
+  account_book: household
+  person: camila
+  role: guest

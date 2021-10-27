@@ -10,15 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_25_161837) do
+ActiveRecord::Schema.define(version: 2021_10_27_144247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "account_book_memberships", force: :cascade do |t|
+    t.bigint "account_book_id", null: false
+    t.bigint "person_id", null: false
+    t.string "role", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_book_id"], name: "index_account_book_memberships_on_account_book_id"
+    t.index ["person_id"], name: "index_account_book_memberships_on_person_id"
+  end
+
+  create_table "account_books", force: :cascade do |t|
+    t.string "name", default: "default", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "accounts", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "account_book_id", null: false
+    t.index ["account_book_id"], name: "index_accounts_on_account_book_id"
   end
 
   create_table "bill_payments", force: :cascade do |t|
@@ -40,6 +58,15 @@ ActiveRecord::Schema.define(version: 2021_10_25_161837) do
     t.index ["account_id"], name: "index_bills_on_account_id"
   end
 
+  create_table "people", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "account_book_memberships", "account_books"
+  add_foreign_key "account_book_memberships", "people"
+  add_foreign_key "accounts", "account_books"
   add_foreign_key "bill_payments", "bills"
   add_foreign_key "bills", "accounts"
 end
