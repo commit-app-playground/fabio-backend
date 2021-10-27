@@ -1,9 +1,10 @@
 class AccountsController < ApplicationController
+  before_action :set_account_book
   before_action :set_account, only: %i[ show edit update destroy ]
 
   # GET /accounts
   def index
-    @accounts = Account.all
+    @accounts = @account_book.accounts.all
   end
 
   # GET /accounts/1
@@ -21,7 +22,7 @@ class AccountsController < ApplicationController
 
   # POST /accounts
   def create
-    @account = Account.new(account_params)
+    @account = @account_book.accounts.new account_params
 
     if @account.save
       redirect_to :accounts
@@ -46,13 +47,16 @@ class AccountsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_account
-      @account = Account.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def account_params
-      params.require(:account).permit(:name)
-    end
+  def set_account_book
+    @account_book = current_user.account_book_memberships.first.account_book
+  end
+
+  def set_account
+    @account = @account_book.accounts.find params[:id]
+  end
+
+  def account_params
+    params.require(:account).permit(:name)
+  end
 end
