@@ -1,8 +1,9 @@
-ul.nostyle
+= turbo_stream_from @account_book
+ul#accounts.nostyle
   li = turbo_frame_tag :new_account
     = link_to '+ Account', [:new, :account]
 
     - if @accounts.none?
       p Click to add your first account (Home, Education, Health, Financing, etc)
 
-  = render 'accounts' if @accounts.any?
+  = render @accounts
