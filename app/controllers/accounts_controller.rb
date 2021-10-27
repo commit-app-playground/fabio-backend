@@ -48,10 +48,6 @@ class AccountsController < ApplicationController
 
   private
 
-  def set_account_book
-    @account_book = current_user.account_book_memberships.first.account_book
-  end
-
   def set_account
     @account = @account_book.accounts.find params[:id]
   end

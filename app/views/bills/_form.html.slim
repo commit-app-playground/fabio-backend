@@ -1,0 +1,5 @@
+= form_for [@account, @bill] do |f|
+  .input-group
+    = f.text_field :name
+    = f.select :day, (1..30), prompt: 'day', include_blank: 'n/a'
+    = f.submit

@@ -1,9 +1,2 @@
-p#notice = notice
-
-p
-  strong Name:
-  = @account.name
-
-=> link_to 'Edit', edit_account_path(@account)
-'|
-=< link_to 'Back', accounts_path
+= turbo_frame_tag "new_bill_for_account_#{dom_id @account}"
+  = link_to '+ Bill', [:new, @account, :bill]

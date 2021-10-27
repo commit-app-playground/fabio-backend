@@ -1,2 +1,8 @@
+= turbo_stream_from account
 li.account id="#{dom_id account}"
-  = account.name
+  h2 = account.name
+  ul.nostyle id="account_#{account.id}_bills"
+    = render account.bills
+
+  = turbo_frame_tag "new_bill_for_account_#{dom_id account}"
+    = link_to '+ Bill', [:new, account, :bill]

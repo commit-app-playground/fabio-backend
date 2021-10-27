@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
   root to: 'accounts#index'
-  resources :accounts
+  resources :accounts do
+    resources :bills
+  end
 end
