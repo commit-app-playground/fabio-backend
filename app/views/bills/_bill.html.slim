@@ -1,3 +1,4 @@
 li.bill id="#{dom_id bill}"
   span = bill.name
-  span monthly at #{bill.day}th
+  = turbo_frame_tag "bill_#{dom_id bill}_payment",
+    src: [bill, :bill_payment], target: :_top

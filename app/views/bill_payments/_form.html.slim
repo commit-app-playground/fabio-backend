@@ -1,0 +1,6 @@
+= turbo_frame_tag "bill_#{dom_id @bill}_payment"
+  = form_for @bill_payment, url: [@bill, :bill_payment] do |f|
+    .input-group
+      = number_field_tag :amount, @bill_payment.amount&.to_f
+      = f.date_field :date
+      = f.submit

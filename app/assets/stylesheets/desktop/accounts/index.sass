@@ -1,18 +1,21 @@
 #accounts_index
   #new_account
+    display: block
+    margin-bottom: 20px
     form
       width: 100%
 
   li.account
     margin-bottom: 10px
-    turbo-frame
-      margin-bottom: 20px
     h2
       margin-bottom: 5px
       border-bottom: 1px solid #CCC
     ul
       li
         display: flex
-        margin-bottom: 5px
-        span
+        span, turbo-frame
           flex: 1
+          turbo-frame
+            display: block
+            a
+              float: right

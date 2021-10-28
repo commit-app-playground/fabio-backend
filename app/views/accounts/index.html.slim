@@ -1,6 +1,6 @@
 = turbo_stream_from @account_book
 ul#accounts.nostyle
-  li = turbo_frame_tag :new_account
+  = turbo_frame_tag :new_account
     = link_to '+ Account', [:new, :account]
 
     - if @accounts.none?

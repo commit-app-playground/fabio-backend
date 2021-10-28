@@ -1,0 +1,8 @@
+= turbo_frame_tag "bill_#{dom_id @bill}_payment"
+  = turbo_frame_tag "bill_#{dom_id @bill}_payment"
+    - if @bill_payment.nil?
+      span = link_to "due on #{@bill.day}", [:new, @bill, :bill_payment]
+    - else
+      Paid on #{l @bill_payment.date, format: :short}
+      = link_to @bill_payment.amount.format,
+        [:edit, @bill, :bill_payment, id: @bill_payment.id]
